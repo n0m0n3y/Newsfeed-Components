@@ -112,28 +112,49 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
- function newComponent(obj){
-  let newDiv = document.createElement("div");
-  newDiv.classList.add("article");
-  let newH2 = document.createElement("h2");
-  newH2.textContent = "text";
-  newDiv.appendChild(newH2);
-  let newPara = document.createElement("p");
-  newPara.textContent = "text";
-  newDiv.appendChild(newPara);
-  let nextPara = document.createElement("p");
-  nextPara.textContent = "text";
-  newDiv.appendChild(nextPara);
-  let nextPara2 = document.createElement("p");
-  nextPara2.textContent = "text";
-  newDiv.appendChild(nextPara2);
-  let nextPara3 = document.createElement("p");
-  nextPara3.textContent = "text";
-  newDiv.appendChild(nextPara3);
-  let newSpan = document.createElement("span");
-  newSpan.textContent = "text";
-  newDiv.appendChild(newSpan);
-  newSpan.classList.add("expandButton");
-  console.log(newDiv);
- }  
-newComponent();
+function articleCompon(data) {
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const para1 = document.createElement('p');
+  const para2 = document.createElement('p');
+  const para3 = document.createElement('p');
+  const expandButton = document.createElement('span');
+//appens
+  article.append(articleTitle);
+  article.append(articleDate);
+  article.append(para1);
+  article.append(para2);
+  article.append(para3);
+  article.append(expandButton);
+
+  article.classList.add('article', 'close');
+  articleDate.classList.add('date');
+  expandButton.classList.add('expandButton');
+
+
+
+
+  articleTitle.textContent = data.title;
+  articleDate.textContent = data.date;
+  para1.textContent = data.firstParagraph;
+  para2.textContent = data.secondParagraph;
+  para3.textContent = data.thirdParagraph;
+  expandButton.textContent = 'Expand';
+
+
+  expandButton.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  })
+
+  return article;
+
+};
+
+const article = document.querySelector('.articles');
+
+data.forEach(data => {
+  article.append(articleCompon(data))
+}); 
+ 3  
+  
